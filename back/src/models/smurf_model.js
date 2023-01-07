@@ -42,6 +42,10 @@ const smurfSchema = new mongoose.Schema(
       maxLength: 25,
       trim: true,
     },
+    likers: {
+      type: [{ _id: String}],
+      required: true,
+    },
     tokens: [{
       token: {
         type: String,
