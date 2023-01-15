@@ -115,7 +115,7 @@ smurfSchema.statics.findByCredentials = async (email, password) => {
 smurfSchema.pre("remove", async function (next) {
   const smurf = this;
 
-  await Resource.deleteMany({ owner: smurf._id });
+  await smurf.deleteMany({ likers: smurf._id });
 
   next();
 });
