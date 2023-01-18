@@ -1,20 +1,28 @@
-const sgMail = require("@sendgrid/mail");
+const nodemailer = require("nodemailer");
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTPHOST,
+  port: process.env.SMTPPORT,
+  secure: true,
+  auth: {
+    user: process.env.SMTPUSER,
+    pass: process.env.SMTPPASS,
+  },
+});
 
 const sendWelcomeEmail = (email, pseudo) => {
-  sgMail.send({
-    to: email,
+  transporter.sendMail({
     from: process.env.EMAIL_SMURF,
+    to: email,
     subject: "Thank you for joining The Social Smurfs Network",
     text: `Welcome to The Social Smurfs Network, ${ pseudo }.`
   });
 };
 
 const sendCancelationEmail = (email, pseudo) => {
-  sgMail.send({
-    to: email,
+  transporter.sendMail({
     from: process.env.EMAIL_SMURF,
+    to: email,
     subject: "Thank you for use The Social Smurfs Network",
     text: `We wish you a good continuation The Social Smurfs Network, Goodbye ${ pseudo }.`
   });
