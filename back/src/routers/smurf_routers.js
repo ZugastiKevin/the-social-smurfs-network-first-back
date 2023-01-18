@@ -1,5 +1,5 @@
 const express = require('express');
-const { sendWelcomeEmail, sendCancelationEmail } = require("../mailler/account");
+const { sendWelcomeEmail, sendCancelationEmail } = require("../mailer/account");
 const auth = require('../middleware/auth_middleware');
 const Smurf = require('../models/smurf_model');
 const multer = require('multer');
